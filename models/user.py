@@ -16,8 +16,8 @@ class User(BaseModel, Base):
         password (sqlalchemy String): The user's password.
         first_name (sqlalchemy String): The user's first name.
         last_name (sqlalchemy String): The user's last name.
-        places (sqlalchemy relationship): The Place objects belonging to the user.
-        reviews (sqlalchemy relationship): The Review objects belonging to the user.
+        places (sqlalchemy relationship): The Place objects belonging user.
+        reviews (sqlalchemy relationship): The Review objects belonging user.
     """
     __tablename__ = "users"
     email = Column(String(128), nullable=False)
