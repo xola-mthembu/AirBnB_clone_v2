@@ -6,6 +6,15 @@ from sqlalchemy.orm import relationship
 from os import getenv
 
 
+place_amenity = Table("place_amenity", Base.metadata,
+                      Column("place_id", String(60), 
+                             ForeignKey("places.id"),
+                             primary_key=True, nullable=False),
+                      Column("amenity_id", String(60),
+                             ForeignKey("amenities.id"),
+                             primary_key=True, nullable=False))
+
+
 class Place(BaseModel, Base):
     """Represents a Place for a MySQL database.
 
@@ -39,8 +48,27 @@ class Place(BaseModel, Base):
     latitude = Column(Float)
     longitude = Column(Float)
     if getenv("HBNB_TYPE_STORAGE") == "db":
+        amenities = relationship("Amenity",
+                                 secondary=place_amenity,
+                                 viewonly=False)
         reviews = relationship("Review", backref="place", cascade="delete")
     else:
+        amenity_ids = []
+
+        @property
+        def amenities(self):
+            """Get/set linked Amenities."""
+            amenity_list = []
+            for amenity in list(models.storage.all(Amenity).values()):
+                if amenity.id in self.amenity_ids:
+                    amenity_list.append(amenity)
+            return amenity_list
+
+        @amenities.setter
+        def amenities(self, value):
+            if type(value) == Amenity:
+                self.amenity_ids.append(value.id)
+
         @property
         def reviews(self):
             """Get a list of all linked Reviews."""
