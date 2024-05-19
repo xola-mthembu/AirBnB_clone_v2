@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>HBNB</title>
+    <link rel="stylesheet" href="/static/styles/3-header.css">
+    <link rel="stylesheet" href="/static/styles/3-footer.css">
+    <link rel="stylesheet" href="/static/styles/4-common.css">
+    <link rel="stylesheet" href="/static/styles/6-filters.css">
+  </head>
+  <body>
+    <header>
+      <!-- header content -->
+    </header>
+    <section>
+      <h3>States</h3>
+      <div class="popover">
+        <div class="popover-content">
+          <h4>&nbsp;</h4>
+          <ul>
+            {% for state in states %}
+              <li>
+                <span>{{ state.name }}</span>
+                <ul>
+                  {% for city in state.cities %}
+                    <li>{{ city.name }}</li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <h3>Amenities</h3>
+      <div class="popover">
+        <div class="popover-content">
+          <h4>&nbsp;</h4>
+          <ul>
+            {% for amenity in amenities %}
+              <li>{{ amenity.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <!-- footer content -->
+    </footer>
+  </body>
+</html>
