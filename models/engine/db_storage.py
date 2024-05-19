@@ -34,7 +34,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """Query on the current database session all objects of the given class.
+        """Query on the current database sess all objects of the given class.
 
         If cls is None, queries all types of objects.
 
@@ -77,4 +77,4 @@ class DBStorage:
 
     def close(self):
         """Close the working SQLAlchemy session."""
-        self.__session.close()
+        self.__session.remove()
