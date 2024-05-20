@@ -1,0 +1,29 @@
+/* 8-places.css */
+
+.places {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.place {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    position: relative;
+}
+
+.place .price {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff5a5f;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
